@@ -225,7 +225,7 @@ button:hover {
   background-position: center;
   background-size: cover;
   width: 100%;
-  min-height: 350px;
+  min-height: 550px;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -240,20 +240,20 @@ button:hover {
 }
 
 .portfolio-buttons {
-  background-image: url('/images/portfolio/portfoliotitle_0.png');
+  background-image: url('/images/pageheader_7.png');
   transition: background-image 0.3s ease-in-out;
 }
 
 .about-title {
-  background-image: url('/images/portfolio/portfoliotitle_3.png');
+  background-image: url('/images/pageheader_4.png');
 }
 
 .contactForm-title {
-  background-image: url('/images/portfolio/portfoliotitle_2.png');
+  background-image: url('/images/pageheader_8.png');
 }
 
 .websites-title {
-  background-image: url('/images/portfolio/portfoliotitle_2.png');
+  background-image: url('/images/pageheader_6.png');
 }
 
 .portfolio-portfolio-button {
@@ -346,6 +346,10 @@ button:hover {
 }
 .formGroup textarea {
   width: 100%;
+}
+
+.colour-magenta {
+  color: var(--color-font-magenta) !important;
 }
 
 /* TRANSITIONS and ANIMATIONS */
