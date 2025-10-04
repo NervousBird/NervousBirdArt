@@ -101,34 +101,73 @@ portfolioLandscapes.addEventListener('mouseover', (event) => {
 // Gallery ---- FIX ALL THIS
 
 const illustrationImages = [
-  './images/portfolio/illustrations/Animals_01.png',
-  './images/portfolio/illustrations/Animals_02.png',
-  './images/portfolio/illustrations/Doodle_03_s.png',
-  './images/portfolio/illustrations/Doodle_07.png',
-  './images/portfolio/illustrations/Kitty The Tiger_01.png',
-  './images/portfolio/illustrations/SciFiWomen_01.png',
-  './images/portfolio/illustrations/SciFiWomen_02.png',
-  './images/portfolio/illustrations/TheHunter.png',
+  {
+    img: './images/portfolio/illustrations/Animals_01.png',
+    title: 'True Love',
+  },
+  {
+    img: './images/portfolio/illustrations/Animals_02.png',
+    title: 'Space',
+  },
+  {
+    img: './images/portfolio/illustrations/Doodle_03_s.png',
+    title: 'Succubus',
+  },
+  {
+    img: './images/portfolio/illustrations/Doodle_07.png',
+    title: 'Chilling in 2070',
+  },
+  {
+    img: './images/portfolio/illustrations/Kitty The Tiger_01.png',
+    title: 'Kitty the Tiger 2',
+  },
+  {
+    img: './images/portfolio/illustrations/SciFiWomen_01.png',
+    title: 'SciFi Doodle 1',
+  },
+  {
+    img: './images/portfolio/illustrations/SciFiWomen_02.png',
+    title: 'SciFi Doodle 2',
+  },
+  {
+    img: './images/portfolio/illustrations/TheHunter.png',
+    title: 'The Hunter',
+  },
 ]
 const portraitImages = [
-  './images/portfolio/portraits/portrait_1.png',
-  './images/portfolio/portraits/portrait_2.png',
-  './images/portfolio/portraits/portrait_3.png',
-  './images/portfolio/portraits/portrait_4.png',
-  './images/portfolio/portraits/portrait_5.png',
-  './images/portfolio/portraits/portrait_6.png',
-  './images/portfolio/portraits/portrait_7.png',
-  './images/portfolio/portraits/portrait_8.png',
-  './images/portfolio/portraits/portrait_9.png',
+  { img: './images/portfolio/portraits/portrait_1.png', title: 'Study 1' },
+  { img: './images/portfolio/portraits/portrait_2.png', title: 'Study 2' },
+  { img: './images/portfolio/portraits/portrait_3.png', title: 'Study 3' },
+  { img: './images/portfolio/portraits/portrait_4.png', title: 'Study 4' },
+  { img: './images/portfolio/portraits/portrait_5.png', title: 'Study 5' },
+  { img: './images/portfolio/portraits/portrait_6.png', title: 'Study 6' },
+  { img: './images/portfolio/portraits/portrait_7.png', title: 'Study 7' },
+  { img: './images/portfolio/portraits/portrait_8.png', title: 'Study 8' },
+  { img: './images/portfolio/portraits/portrait_9.png', title: 'Study 9' },
 ]
 const landscapeImages = [
-  './images/portfolio/landscapes/DeathByHeat.png',
-  './images/portfolio/landscapes/Fields.png',
-  './images/portfolio/landscapes/FightingTheWind.png',
-  './images/portfolio/landscapes/FishandChips.png',
-  './images/portfolio/landscapes/RainyDays.png',
-  './images/portfolio/landscapes/Staircase_01.png',
-  './images/portfolio/landscapes/Through The Fields 01.png',
+  {
+    img: './images/portfolio/landscapes/DeathByHeat.png',
+    title: 'Death by Heat',
+  },
+  { img: './images/portfolio/landscapes/Fields.png', title: 'Fields' },
+  {
+    img: './images/portfolio/landscapes/FightingTheWind.png',
+    title: 'Fighting the Wind',
+  },
+  {
+    img: './images/portfolio/landscapes/FishandChips.png',
+    title: 'Fish and Chips',
+  },
+  { img: './images/portfolio/landscapes/RainyDays.png', title: 'Rainy Days' },
+  {
+    img: './images/portfolio/landscapes/Staircase_01.png',
+    title: 'Staircase Friends',
+  },
+  {
+    img: './images/portfolio/landscapes/Through The Fields 01.png',
+    title: 'Through the Fields',
+  },
 ]
 
 const backButton = document.getElementById('gallery-back')
@@ -136,7 +175,9 @@ const forwardButton = document.getElementById('gallery-forward')
 const illustrationButton = document.getElementById('portfolio-illustrations')
 const portraitButton = document.getElementById('portfolio-portraits')
 const landscapeButton = document.getElementById('portfolio-landscapes')
-let galleryImage = document.getElementById('gallery-image')
+const galleryImage = document.getElementById('gallery-image')
+const galleryTitle = document.getElementById('gallery-title')
+const previewsContainer = document.getElementById('gallery-image-previews')
 let currentGallery = illustrationImages
 let galleryIndex = 0
 let galleryMax = currentGallery.length - 1
@@ -173,8 +214,10 @@ landscapeButton.addEventListener('click', (event) => {
 function changeGallery(gallery) {
   currentGallery = gallery
   galleryIndex = 0
+  galleryTitle.innerHTML = currentGallery[galleryIndex].title
   galleryMax = currentGallery.length - 1
-  galleryImage.src = currentGallery[galleryIndex]
+  galleryImage.src = currentGallery[galleryIndex].img
+  loadPreviewImages()
 }
 
 function galleryBack() {
@@ -183,7 +226,8 @@ function galleryBack() {
   } else {
     galleryIndex--
   }
-  galleryImage.src = currentGallery[galleryIndex]
+  galleryImage.src = currentGallery[galleryIndex].img
+  galleryTitle.innerHTML = currentGallery[galleryIndex].title
 }
 
 function galleryForward() {
@@ -192,7 +236,36 @@ function galleryForward() {
   } else {
     galleryIndex++
   }
-  galleryImage.src = currentGallery[galleryIndex]
+  galleryImage.src = currentGallery[galleryIndex].img
+  galleryTitle.innerHTML = currentGallery[galleryIndex].title
 }
 
 changeGallery(illustrationImages)
+
+function loadPreviewImages() {
+  previewsContainer.innerHTML = ''
+  currentGallery.forEach((image, index) => {
+    let newDiv = document.createElement('div')
+    newDiv.className = 'preview-container'
+    let divImg = createPreview(image.img)
+    newDiv.appendChild(divImg)
+    newDiv.addEventListener('click', (event) => {
+      loadClickedImage(image, index)
+    })
+    previewsContainer.appendChild(newDiv)
+  })
+}
+
+function createPreview(image) {
+  let newImg = document.createElement('img')
+  newImg.src = image
+  return newImg
+}
+
+function loadClickedImage(image, index) {
+  galleryImage.src = image.img
+  galleryTitle.innerHTML = image.title
+  galleryIndex = index
+}
+
+loadPreviewImages()
