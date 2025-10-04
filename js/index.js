@@ -218,6 +218,7 @@ function changeGallery(gallery) {
   galleryMax = currentGallery.length - 1
   galleryImage.src = currentGallery[galleryIndex].img
   loadPreviewImages()
+  updatePreviewHighlight()
 }
 
 function galleryBack() {
@@ -228,6 +229,7 @@ function galleryBack() {
   }
   galleryImage.src = currentGallery[galleryIndex].img
   galleryTitle.innerHTML = currentGallery[galleryIndex].title
+  updatePreviewHighlight()
 }
 
 function galleryForward() {
@@ -238,6 +240,7 @@ function galleryForward() {
   }
   galleryImage.src = currentGallery[galleryIndex].img
   galleryTitle.innerHTML = currentGallery[galleryIndex].title
+  updatePreviewHighlight()
 }
 
 changeGallery(illustrationImages)
@@ -248,6 +251,9 @@ function loadPreviewImages() {
     let newDiv = document.createElement('div')
     newDiv.className = 'preview-container'
     let divImg = createPreview(image.img)
+    if (index === galleryIndex) {
+      newDiv.classList.add('active')
+    }
     newDiv.appendChild(divImg)
     newDiv.addEventListener('click', (event) => {
       loadClickedImage(image, index)
@@ -266,6 +272,18 @@ function loadClickedImage(image, index) {
   galleryImage.src = image.img
   galleryTitle.innerHTML = image.title
   galleryIndex = index
+  updatePreviewHighlight()
+}
+
+function updatePreviewHighlight() {
+  let previewImages = document.querySelectorAll('.preview-container')
+  previewImages.forEach((image, index) => {
+    if (index === galleryIndex) {
+      image.classList.add('active')
+    } else {
+      image.classList.remove('active')
+    }
+  })
 }
 
 loadPreviewImages()

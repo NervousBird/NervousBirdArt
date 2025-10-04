@@ -1,3 +1,9 @@
+/* Bahnschrijft SemiLight
+Cascadia Mono SemiBold
+Mattone Black
+Mattone
+Cubano */
+
 * {
   font-family: 'Mattone Black';
   margin: 0;
@@ -119,6 +125,10 @@ h2 {
   text-align: center;
   margin-top: auto;
   margin-bottom: 2vw;
+}
+
+h3 {
+  font-family: 'Cubano';
 }
 
 button {
@@ -305,6 +315,7 @@ button:hover {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  gap: 5px;
 }
 
 .preview-container {
@@ -318,12 +329,23 @@ button:hover {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(70%);
+  filter: brightness(50%);
+  transition: all 0.3s ease-in-out;
 }
 
 .preview-container img:hover {
   scale: 1.1;
   filter: brightness(100%);
+  transition: all 0.3s ease-in-out;
+}
+
+.active {
+  box-shadow: 0px 0px 5px 2px var(--color-font-yellow);
+}
+
+.active img {
+  filter: brightness(100%);
+  transition: all 0.3s ease-in-out;
 }
 
 .contact-area,

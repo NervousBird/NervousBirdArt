@@ -18,8 +18,9 @@
 [/] - Add a gallery of images
 [/] - Allow users to cycle through gallery
 [/] - Add separate galleries for Illustration, Portraits, Landscapes
-[ ] - Add list of smaller images to cycle through gallery faster
-[x] - Magenta highlight for selected gallery
+[ ] - Add sub-categories for easier to manage large galleries
+[/] - Add list of smaller images to cycle through gallery faster
+[/] - Magenta highlight for selected gallery
 [/] - Resize images so landscapes can be larger
 
 ## About Page
@@ -37,7 +38,6 @@
 [ ] - Create Website Page
 [ ] - Add working links
 [ ] - Add links to external websites (hosted by github)
-
 
 # Before Launching
 
