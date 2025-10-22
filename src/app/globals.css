@@ -3,10 +3,18 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  --font-blue: rgb(100, 165, 167);
+  --font-pink: rgb(197, 134, 192);
+  --font-magenta: rgb(221, 11, 107);
+  --font-yellow: rgb(246, 208, 77);
+  --font-orange: rgb(228, 116, 46);
+  --background-periwinkle: rgb(191, 179, 251);
+  
 }
 
 body {
-  background: var(--background);
+  background: var(--background-periwinkle);
   color: var(--foreground);
   font-family: cubano, sans-serif;
   font-style: normal;
@@ -14,5 +22,17 @@ body {
 }
 
 h1 {
-  font-size: 8vw;
+  font-size: 12vw;
+  line-height: 12vw;
+  color: var(--font-yellow);
+  text-shadow: 1vw 1vw var(--font-magenta);
+}
+
+.letter {
+  transition: all .4s ease;
+}
+
+.letter:hover {
+  transform: translateY(1.5vw);
+  transition: all .3s ease;
 }

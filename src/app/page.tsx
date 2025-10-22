@@ -1,7 +1,9 @@
+import Title from "./components/Title";
+
 export default function Home() {
   return (
     <>
-     <h1>NervousBirdArt</h1>
+     <Title />
     </>
   )
 }
